@@ -10,6 +10,6 @@ apt-get install  -y git htop
 [ ! -f /etc/php5/cli/conf.d/20-mcrypt.ini ] && php5enmod mcrypt
 [ ! -f /usr/local/bin/composer ] && sh -c curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
-[ -f /var/run/reboot-required ] && echo "Reboot required! Run 'vagrant reload' before continuing."
+[ -f /var/run/reboot-required ] && echo "Reboot required! Run 'vagrant reload' before continuing." && exit 1
 
 exit 0
