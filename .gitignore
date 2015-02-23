@@ -1,1 +1,4 @@
 /.vagrant
+msds_data.sql
+msds_data.sql.gz
+msds_data.psql
