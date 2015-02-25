@@ -40,10 +40,37 @@ to load the dataset into the `msds` database.
 You can run queries on the data using the `psql` client.  The `postgres` user
 has superuser privileges by default.  You can start the client by running:
 
-``` sudo -u postgres psql -d msds ```
+```
+sudo -u postgres psql -d msds
+```
 
 Type `\d` to see a list of tables and relations.  You can type `\d+ chemicals`
 to see the schema for our chemicals table.
 
 We are particularity interested in query times, so type `\timing` to turn
 timing on.  This will report execution times for each query we run.
+
+## Using the Example Scripts
+
+You can run a script with
+
+```
+sudo -u postgres psql -d msds -a -f <script>
+```
+
+Replacing `<script>` with the path to the script.  You should run them in the
+following order:
+
+1. `queries.sql`
+    * This will run a set of benchmark queries on the data.
+2. `create_indexes.sql`
+    * This will add various indexes to the table.
+3. `queries.sql` again
+    * See how the performance of each query changes with the indexes.
+4. `create_lookup_column.sql`
+    * This adds a `search_index` column and index on it.
+5. `search_index_queries.sql`
+    * Runs some more queries using the new `search_index`.
+
+All of these scripts turn timing on before running so you can see the execution
+time of each query.
